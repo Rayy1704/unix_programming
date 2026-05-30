@@ -1,8 +1,8 @@
-#include "apue.h"
 #include <dirent.h>
 #include <sys/stat.h>
 #include <errno.h>
-
+#include <stdio.h>
+#define MAXLINE 4096
 const char *red = "\033[0;31m";
 const char *bold_green = "\033[1;32m";
 const char *bold_red   = "\033[1;31m";
