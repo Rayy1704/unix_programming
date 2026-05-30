@@ -27,3 +27,21 @@ void find(char * dir, char * file){
     }
     closedir(dp);
 }
+
+int main(int argc, char * argv[]){
+    found_path = "0";
+    if(argc==3){
+        find(argv[1],argv[2]);
+    }else if(argc==2){
+        find(".",argv[1]);
+    }else {
+        fprintf(stdout, "Usage : %s [<directory>] <filename>\n", argv[0]);
+        return 1;
+    }
+    if(strcmp(found_path,"0")){
+        fprintf(stdout,"File %s found at %s\n",(argc==3?argv[2]:argv[1]) , found_path);
+    }else {
+        fprintf(stdout,"File %s not found\n",(argc==3?argv[2]:argv[1]));
+    }
+    return 0;
+}
