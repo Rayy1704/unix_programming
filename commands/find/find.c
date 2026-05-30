@@ -1,8 +1,8 @@
-#include <stdio.h>//has fprintf
-#include <dirent.h> //has dirent
-#include <sys/stat.h>// has stat
-#include <stdlib.h>// has exit
-#include <string.h> //has strcmp
+#include <stdio.h> //has fprintf
+#include <dirent.h>  //has dirent
+#include <sys/stat.h> // has stat
+#include <stdlib.h> // has exit
+#include <string.h>  //has strcmp
 char * found_path;
 void find(char * dir, char * file){
     DIR *dp;
