@@ -28,7 +28,7 @@ void find(char * dir, char * file){
     closedir(dp);
 }
 
-int main(int argc, char * argv[]){
+int main(int argc, char * argv[]){ // main
     found_path = "0";
     if(argc==3){
         find(argv[1],argv[2]);
