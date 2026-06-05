@@ -2,6 +2,10 @@
 #include <stdio.h>  
 #include <stdlib.h>
 
+#include <sys/stat.h>
+void getFileInfo(int * fd){
+
+}
 int main(int argc, char * argv[]){
     int val;
     if(argc!=2){
