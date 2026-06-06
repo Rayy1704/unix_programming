@@ -3,8 +3,13 @@
 #include <stdlib.h>
 
 #include <sys/stat.h>
-void getFileInfo(int * fd){
-
+void getFileInfo(char * fd){
+    struct stat st;
+    if(fstat(atoi(fd),&st)<0){
+        fprintf(stderr, "fstat error for file descriptor : %s\n",fd);
+        exit(1);
+    }
+    printf("Best I/O Block Size : %d\n",st.st_blksize);
 }
 int main(int argc, char * argv[]){
     int val;
@@ -14,6 +19,7 @@ int main(int argc, char * argv[]){
     }
     if ((val=fcntl(atoi(argv[1]),F_GETFL,0))<0){
         fprintf(stderr, "fcntl error for file descriptor : %s\n",argv[1]);
+        return 1;
     }
     switch(val & O_ACCMODE){
 
@@ -49,6 +55,7 @@ int main(int argc, char * argv[]){
         }
     #endif
     putchar('\n');
+    getFileInfo(argv[1]);
     return 0;
 }
 
