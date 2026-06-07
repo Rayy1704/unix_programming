@@ -1,6 +1,7 @@
 #include <fcntl.h>
 #include <stdio.h>  
 #include <stdlib.h>
+#include <time.h>
 
 #include <sys/stat.h>
 void getFileInfo(char * fd){
@@ -10,6 +11,9 @@ void getFileInfo(char * fd){
         exit(1);
     }
     printf("Best I/O Block Size : %d\n",st.st_blksize);
+    printf("File Size : %lld\n",st.st_size);
+    printf("File Last Modified: %s", ctime(&(st.st_mtime)));
+
 }
 int main(int argc, char * argv[]){
     int val;
