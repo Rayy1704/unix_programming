@@ -15,18 +15,14 @@ void getFileInfo(char * fd){
     printf("File Last Modified: %s", ctime(&(st.st_mtime)));
 
 }
-int main(int argc, char * argv[]){
+void getFileAccessMode(char * fd){
     int val;
-    if(argc!=2){
-        fprintf(stderr, "Usage : %s <descriptor>\n",argv[0]);
-        return 1;
-    }
-    if ((val=fcntl(atoi(argv[1]),F_GETFL,0))<0){
-        fprintf(stderr, "fcntl error for file descriptor : %s\n",argv[1]);
-        return 1;
+    if ((val=fcntl(atoi(fd),F_GETFL,0))<0){
+        fprintf(stderr, "fcntl error for file descriptor : %s\n",fd);
+        exit(1);
     }
     switch(val & O_ACCMODE){
-
+        
         case O_RDONLY:
         printf("Read Only");
         break;
@@ -59,6 +55,15 @@ int main(int argc, char * argv[]){
         }
     #endif
     putchar('\n');
+}
+int main(int argc, char * argv[]){
+
+    if(argc!=2){ // handle parameters
+        fprintf(stderr, "Usage : %s <descriptor>\n",argv[0]);
+        return 1;
+    }
+
+    getFileAccessMode(argv[1]);    
     getFileInfo(argv[1]);
     return 0;
 }
