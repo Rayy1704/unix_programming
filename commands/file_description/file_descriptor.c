@@ -78,7 +78,14 @@ void getFileType(char * fd){
         printf("Symbolic Link File\n");
     }else if(S_ISSOCK(mode)){
         printf("Socket File\n");
-    }else{
+    }else if(S_TYPEISMQ(&st)){
+        printf("Message Queue\n");
+    }else if(S_TYPEISSEM(&st)){
+        printf("Semaphore\n");
+    }else if(S_TYPEISSHM(&st)){
+        printf("Shared Memory Object\n");
+    }
+    else{
         fprintf(stderr, "Unknown File Type\n");
     }
 }
