@@ -75,7 +75,7 @@ void getFileType(char * fd){
     }else if(S_ISFIFO(mode)){
         printf("PIPE/FIFO File\n");
     }else if(S_ISLNK(mode)){
-        printf("Symbolic Link File\n");
+        printf("Symbolic Link File\n"); // cant be detected by fstat but i still put it here
     }else if(S_ISSOCK(mode)){
         printf("Socket File\n");
     }else if(S_TYPEISMQ(&st)){
