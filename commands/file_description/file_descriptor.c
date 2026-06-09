@@ -56,6 +56,42 @@ void getFileAccessMode(char * fd){
     #endif
     putchar('\n');
 }
+
+void getFileType(char * fd){
+    struct stat st;
+    if(fstat(atoi(fd),&st)<0){
+        fprintf(stderr, "fstat error for file descriptor : %s\n",fd);
+        exit(1);
+    }
+    mode_t mode = st.st_mode;
+    if(S_ISREG(mode)){
+        printf("Regular File\n");
+    }else if(S_ISDIR(mode)){
+        printf("Directory File\n");
+    }else if(S_ISCHR(mode)){
+        printf("Character Special File\n");
+    }else if(S_ISBLK(mode)){
+        printf("Block Special File\n");
+    }else if(S_ISFIFO(mode)){
+        printf("PIPE/FIFO File\n");
+    }else if(S_ISLNK(mode)){
+        printf("Symbolic Link File\n");
+    }else if(S_ISSOCK(mode)){
+        printf("Socket File\n");
+    }else{
+        fprintf(stderr, "Unknown File Type\n");
+    }
+}
+
+
+
+
+
+
+
+
+
+
 int main(int argc, char * argv[]){
 
     if(argc!=2){ // handle parameters
@@ -65,6 +101,7 @@ int main(int argc, char * argv[]){
 
     getFileAccessMode(argv[1]);    
     getFileInfo(argv[1]);
+    getFileType(argv[1]);
     return 0;
 }
 
